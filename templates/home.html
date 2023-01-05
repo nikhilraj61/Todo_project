@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+input[type=text] {
+  width: 50%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-radius: 4px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+<!--#######-->
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 150px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+h1{
+color: silver;
+background-color:darkslategrey;
+padding: 140px;
+margin:auto;
+}
+
+    </style>
+</head>
+<!--<center>-->
+<!--<h1 style="color:#c71285;">TODO_DEMO</h1>-->
+<!--    </center>-->
+<hr>
+<body style="background-color: #424241  ;">
+
+<!--# container-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+
+                    <h1 align="center">TODO_APP</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+<!--            <h3>hello fool</h3>-->
+             <form action="{% url 'home' %}" method="post" class="p-3 shadow">
+<!--<fieldset style="height:450px;width:900px;">-->
+<!--    <legend style= "color:#1e45c7;" >Type your info</legend>-->
+
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="enter any name"><br><br>
+    <input type="text" name="age" placeholder="enter any age"><br><br>
+    <input type="text" name="priority" placeholder="enter any priority"><br><br>
+    <input type="text" name="email" placeholder="enter your email"><br><br>
+<!--    <p>{{i.date}}</p>-->
+     <input type="date" name="date" placeholder="enter your email"><br><br>
+    <input type="submit" value="Submit">
+<!--</fieldset>-->
+
+</form>
+        </div>
+        <div class="col-md-6">
+             <hr color="green">
+            <h4>task complete !</h4>
+            {% for i in obj1 %}
+            <div class="card" >
+                <div class="card-body" style="height:170px;">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    
+                    <h5 class="card-title">{{i.email}}&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{i.date}}</h5>
+<!--                    <p>{{i.date}}</p>-->
+
+                    <a class="btn btn-danger" href="{% url 'delete' i.id %}" >delete</a>&nbsp;&nbsp;&nbsp
+            
+                    <a class="btn btn-success" href="{% url 'update' i.id %}" >update</a>
+
+                </div>
+                </div>
+            {% endfor %}
+              <hr color="green">
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr size="19px">
+   <h4>DETAILS &#128525;</h4>
+          {% for i in obj1 %}
+
+<div class="column " style="background-color:#bbb;">
+   <h4 style="background-color:green;">Name: {{i.name}}</h4>
+     <p > Priority: <b>{{i.priority}}</b></p>
+     <p><b>Age: {{i.age}}</b></p>
+     <p><b>Mail: {{i.email}}</b></p><br>
+  </div>
+          {% endfor %}
+
+
+</body>
+</html>

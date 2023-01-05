@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+<style>
+    body{
+        background-color:darkgrey;
+    }
+    .button3{ 
+        background-color: green;/* Red */
+        height:30px;
+        width:70px;
+    }
+</style>
+</head>
+<body >
+{% comment %} <img src="{% static 'images/2.jpg' %} alt='no image"> {% endcomment %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button3">
+
+
+</form>
+
+</body>
+</html>
